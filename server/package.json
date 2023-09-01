@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "start:dev": "echo \"Started the server\""
+  }
+}

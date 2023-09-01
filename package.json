@@ -1,0 +1,16 @@
+{
+  "name": "ijaar-platform",
+  "version": "1.0.0",
+  "repository": "https://github.com/aaqyaar/ijaar-platform.git",
+  "author": "abdizamedmo <abdizamedmo@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  },
+  "scripts": {
+    "start:app": "cd ./app && yarn start",
+    "start:web": "cd ./web && yarn start",
+    "start:dev:server": "cd ./server && yarn start:dev",
+    "dev": "npm-run-all --parallel start:dev:server start:app start:web"
+  }
+}

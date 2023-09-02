@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start:app": "cd ./native && yarn start",
-    "start:web": "cd ./web && yarn start",
+    "start:web": "cd ./web && yarn dev",
     "start:dev:server": "cd ./server && yarn start:dev",
     "dev": "npm-run-all --parallel start:dev:server start:app start:web"
   }

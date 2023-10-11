@@ -23,10 +23,11 @@ const UserSchema = new Schema(
   {
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    image: { type: String, required: true },
+    photoURL: { type: String, default: null },
     password: { type: String, required: true },
     isVerified: { type: Boolean, default: false },
-    // role: { type: Schema.Types.ObjectId, ref: 'Role' },
+    phoneNumber: { type: String, required: true },
+    role: { type: Schema.Types.ObjectId, ref: 'Role' },
     resetPasswordToken: String,
     resetPasswordExpire: Date,
     confirmEmailToken: String,

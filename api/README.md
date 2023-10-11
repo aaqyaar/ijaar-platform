@@ -28,14 +28,11 @@ The current routes, types, methods and actions attached to them are:
 
 ## Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file
+To run this project, copy the `.env.example` file to `.env` file and add the following environment variables to your `.env` file
 
-`PORT`
-`MONGO_URI`
-`SMTP_SERVER`
-`SMTP_PORT`
-`SMTP_USER`
-`SMTP_PASS` app password
+```bash
+cp .env.example .env
+```
 
 ## Tech Stack
 

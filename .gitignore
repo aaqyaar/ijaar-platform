@@ -2,10 +2,8 @@ node_modules
 
 .idea
 
-app/node_modules
 
-server/node_modules
+api/node_modules
 
 web/node_modules
 
-.env

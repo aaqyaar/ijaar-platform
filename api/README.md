@@ -9,15 +9,15 @@ The current routes, types, methods and actions attached to them are:
 
 | Domain           | Method | Route                  | Access    | Description                         |
 | ---------------- | ------ | ---------------------- | --------- | ----------------------------------- |
-| `localhost:3000` | `GET`  | `/`                    | `public`  | Returns the static HTML page.       |
-| `localhost:3000` | `GET`  | `/api/users`           | `private` | Returns all users.                  |
-| `localhost:3000` | `POST` | `/api/register`        | `private` | Registers a new user.               |
-| `localhost:3000` | `POST` | `/api/login`           | `private` | Logs in a user.                     |
-| `localhost:3000` | `POST` | `/api/logout`          | `private` | Logs out a user.                    |
-| `localhost:3000` | `POST` | `/api/confirm-email`   | `private` | Confirms a user's email.            |
-| `localhost:3000` | `POST` | `/api/resend-code`     | `private` | Resends a user's confirmation code. |
-| `localhost:3000` | `POST` | `/api/forgot-password` | `private` | Sends a user a password reset link. |
-| `localhost:3000` | `POST` | `/api/reset-password`  | `private` | Resets a user's password.           |
+| `localhost:8000` | `GET`  | `/`                    | `public`  | Returns the static HTML page.       |
+| `localhost:8000` | `GET`  | `/api/users`           | `private` | Returns all users.                  |
+| `localhost:8000` | `POST` | `/api/register`        | `private` | Registers a new user.               |
+| `localhost:8000` | `POST` | `/api/login`           | `private` | Logs in a user.                     |
+| `localhost:8000` | `POST` | `/api/logout`          | `private` | Logs out a user.                    |
+| `localhost:8000` | `POST` | `/api/confirm-email`   | `private` | Confirms a user's email.            |
+| `localhost:8000` | `POST` | `/api/resend-code`     | `private` | Resends a user's confirmation code. |
+| `localhost:8000` | `POST` | `/api/forgot-password` | `private` | Sends a user a password reset link. |
+| `localhost:8000` | `POST` | `/api/reset-password`  | `private` | Resets a user's password.           |
 
 > :warning: Most of the API endpoints are **private**. Make sure to include the `Authorization` header with the `Bearer <token>` value.
 

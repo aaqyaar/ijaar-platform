@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { getEnv } from '../utils/helpers';
 
 interface Options extends mongoose.ConnectOptions {
   useNewUrlParser?: boolean;
@@ -7,7 +8,7 @@ interface Options extends mongoose.ConnectOptions {
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI, {
+    const conn = await mongoose.connect(getEnv('MONGO_URI'), {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     } as Options);

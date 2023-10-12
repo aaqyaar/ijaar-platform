@@ -1,13 +1,14 @@
-import UserModel from '../models/users.model';
+import UserModel, { UserDocument } from '../models/users.model';
 import { Request, Response } from 'express';
 import { sign } from 'jsonwebtoken';
 import { User } from '../interfaces/user.interface';
 import { TokenData } from './../interfaces/auth.interface';
 import emailRepository from '../documents/emailRepository';
+import { getEnv } from '../utils/helpers';
 
 const createToken = (user: User): TokenData => {
   const expiresIn: number = 60 * 60;
-  const token = sign({ _id: user._id }, process.env.SECRET_KEY, { expiresIn: expiresIn });
+  const token = sign({ _id: user._id }, getEnv('SECRET_KEY'), { expiresIn: expiresIn });
   return { expiresIn, token };
 };
 
@@ -15,7 +16,9 @@ const generateDigits = () => {
   return (Math.floor(Math.random() * 900000) + 100000).toString();
 };
 export default class AuthController {
-  //   constructor(private readonly schema: any = UserModel) {}
+  constructor(private readonly schema: UserDocument) {
+    schema = new UserModel();
+  }
 
   // confirm code
   public async confirmCode(req: Request, res: Response) {
@@ -62,7 +65,7 @@ export default class AuthController {
       if (!user) return res.status(404).json({ message: 'User not found' });
       //   check if password is correct
       const isMatch = await user.comparePassword(payloadPassword);
-      console.log(isMatch);
+
       if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
       //   create token
       const tokenData = createToken(user);
@@ -111,7 +114,7 @@ export default class AuthController {
       user.resetPasswordToken = resetToken;
       user.resetPasswordExpire = (Date.now() + 10 * 60 * 1000) as any;
       await user.save();
-      const uri = `${process.env.CLIENT_URL}/auth/reset-password/${resetToken}`;
+      const uri = `${getEnv('CLIENT_URL')}/auth/reset-password/${resetToken}`;
       await emailRepository.sendResetPasswordEmail(user.email, uri);
       return res.status(200).json({ message: 'Reset password link sent successfully' });
     } catch (error) {

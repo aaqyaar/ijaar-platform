@@ -17,7 +17,7 @@ interface IUser extends User {
   getConfirmEmailToken: () => string;
 }
 
-type UserDocument = IUser & Document;
+export type UserDocument = IUser & Document;
 
 const UserSchema = new Schema(
   {

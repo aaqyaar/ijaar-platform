@@ -1,8 +1,8 @@
-import UserModel, { UserDocument } from '../models/users.model';
+import UserModel from '../models/users.model';
 import { Request, Response } from 'express';
 import { sign } from 'jsonwebtoken';
 import { User } from '../interfaces/user.interface';
-import { TokenData } from './../interfaces/auth.interface';
+import { RequestWithUser, TokenData } from './../interfaces/auth.interface';
 import emailRepository from '../documents/emailRepository';
 import { getEnv } from '../utils/helpers';
 
@@ -16,11 +16,16 @@ const generateDigits = () => {
   return (Math.floor(Math.random() * 900000) + 100000).toString();
 };
 export default class AuthController {
-  constructor(private readonly schema: UserDocument) {
-    schema = new UserModel();
+  constructor(private readonly schema: typeof UserModel) {
+    schema = UserModel;
   }
 
-  // confirm code
+  /**
+   *  Confirm code sent to user email
+   * @body {string} code
+   * @body {string} email
+   * @returns
+   */
   public async confirmCode(req: Request, res: Response) {
     try {
       const { code: confirmationCode, email } = req.body;
@@ -39,7 +44,11 @@ export default class AuthController {
       return res.status(500).json({ message: 'Internal server error' });
     }
   }
-  // resend code
+  /**
+   * Resend code to user email
+   * @body {string} email
+   * @returns {string} message
+   */
   public async resendCode(req: Request, res: Response) {
     try {
       const { email } = req.body;
@@ -142,6 +151,15 @@ export default class AuthController {
     try {
       res.clearCookie('Authorization');
       return res.status(200).json({ message: 'Logout successful' });
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+
+  public async me(req: RequestWithUser, res: Response) {
+    try {
+      const user = this.schema.findOne({ _id: req.user._id });
+      return res.status(200).json({ user });
     } catch (error) {
       return res.status(500).json({ message: 'Internal server error' });
     }

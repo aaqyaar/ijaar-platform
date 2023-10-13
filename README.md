@@ -5,6 +5,7 @@ The Real Estate Management System will be a web and mobile based application bui
 ## Authors
 
 - [@abdizamedmo](https://www.github.com/aaqyaar)
+- [@diidii](https://www.github.com/badrudin-cloud)
 - [@abdimalik](https://github.com/Abdimalik-Osman)
 
 ## Run Locally
